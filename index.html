@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @font-face {
+            font-family: "HiBlack";
+            src: url("HiBlack-n3a1.otf");
+        }
+        
+        body {
+            background-color: rgb(255, 255, 255);
+            background-image: url('ce2.jpg');
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        
+        #title {
+            border-radius: 25px;
+            background: #ffbb00;
+            padding: 1%;
+            width: 45%;
+            height: 5vh;
+            font-family: 'HiBlack';
+            font-size: 40px;
+            opacity: 100%;
+            margin: auto;
+            margin-top: 25%;
+            vertical-align: middle;
+        }
+        
+        #title_text {
+            opacity: 100%;
+            margin: auto;
+            padding-left: 2vh;
+        }
+        
+        #counter_bg {
+            margin: auto;
+            margin-top: 2vh;
+            border-radius: 25px;
+            background: #ffbb00;
+            padding-top: 0%;
+            width: 45%;
+            height: 8vh;
+            font-family: 'HiBlack';
+            font-size: 80px;
+            /*box-shadow: 3px 3px 3px 3px rgb(189, 186, 139);*/
+        }
+        
+        #counter_text {
+            margin: auto;
+            padding-left: 5%;
+            animation-name: vibration;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes vibration {
+            from {
+                margin-top: 0px;
+                /*animation-timing-function: cubic-bezier(0.1, 0.01, 0.55, 0.16);
+            */
+            }
+            25% {
+                margin-top: 25px;
+                /*animation-timing-function: cubic-bezier(0.52, 0.44, 0.47, 0.44);
+            */
+            }
+            50% {
+                margin-top: 25px;
+                /*animation-timing-function: cubic-bezier(0.53, 0.56, 0.48, 0.56);
+            */
+            }
+            75% {
+                margin-top: 25px;
+                /*animation-timing-function: cubic-bezier(0.45, 0.84, 0.75, 0.99);
+           */
+            }
+            to {
+                margin-top: 0px;
+            }
+        }
+        
+        #footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 25%;
+            background-color: rgb(255, 255, 255);
+            color: white;
+            text-align: center;
+            background-image: url('footer.png');
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+
+<body>
+    <h1 id='title'>
+        <div id="title_text"> Civil Engineering Graduates From UETP </div>
+    </h1>
+
+    <div id='counter_bg'>
+        <div id='counter_text'></div>
+    </div>
+    <div id="footer"></div>
+</body>
+
+
+<script lang="js">
+    function trend() {
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var day = today.getDate();
+        var hour = today.getHours();
+        var minutes = today.getMinutes();
+        var seconds = today.getSeconds();
+        var epoch = 1952 * 12 * 30 * 24 * 3600;
+        var cur_time = year * 12 * 30 * 24 * 3600 + month * 30 * 24 * 3600 + day * 24 * 3600 + hour * 3600 + minutes * 60 + seconds;
+        var dt = cur_time - epoch;
+        var baking_rate = 200 / (4 * 12 * 30 * 24 * 3600); // students per batch
+        var engineers = dt * baking_rate;
+        return engineers;
+    }
+
+    var count = trend();
+    var intervalId = window.setInterval(function() {
+        // Update Counter
+
+        $('#counter_text').text(count);
+        count = trend();
+    }, 1000);
+
+
+    var player = window.setInterval(function() {
+        var audio = new Audio('cash-register-sound-effect.mp3');
+        audio.play();
+    }, 6 * 100000);
+</script>
+
+
+
+</html>
